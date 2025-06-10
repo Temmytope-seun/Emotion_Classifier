@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Classifier - Emotion Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; max-width: 800px; margin: auto; line-height: 1.6; }
+        textarea, input { width: 100%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 20px; font-size: 16px; }
+        h2, h3 { color: #333; }
+        .prediction { background-color: #f4f4f4; padding: 10px; border-radius: 5px; margin-top: 10px; }
+        .section { margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+    <h1>Emotion Detection from Text</h1>
+
+    <div class="section">
+        <h2>About the Dataset</h2>
+        <p>
+            This web application uses a machine learning model trained on the 
+            <a href="https://www.kaggle.com/datasets/radedaevi/emotions-description" target="_blank">Emotions Description Dataset</a> from Kaggle.
+            The dataset contains a wide range of text samples labeled with human emotions such as joy, anger, sadness, fear, surprise, and love.
+        </p>
+        <p>
+            Each record in the dataset consists of a sentence or phrase and the corresponding emotion label. This data is crucial for training models 
+            that can understand and detect emotional context in written text.
+        </p>
+        <h3>Why Is This Important?</h3>
+        <ul>
+            <li>Helps build emotionally intelligent applications (chatbots, mental health apps, social media monitoring).</li>
+            <li>Improves user engagement and sentiment understanding in customer service.</li>
+            <li>Enables deeper analysis in marketing, HR, and education by detecting user emotions.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Try It Out</h2>
+        <form action="{{ url_for('predict') }}" method="post">
+            <textarea id="textInput" name="text" rows="6" placeholder="Enter your text here..."></textarea>
+            <button type="submit">Classify</button>
+        </form>
+
+        <div class="prediction">
+            <h3>Prediction:</h3>
+            <p>{{ prediction }}</p>
+        </div>
+    </div>
+</body>
+</html>

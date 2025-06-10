@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; max-width: 700px; margin: auto; line-height: 1.6; }
+        .result { background-color: #f0f8ff; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .insight { background-color: #fdf6e3; padding: 15px; border-left: 5px solid #ffc107; border-radius: 5px; }
+        .back { margin-top: 20px; display: inline-block; background: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <div class="result">
+        <h2>Predicted Emotion: {{ label }}</h2>
+    </div>
+
+    <div class="insight">
+        <h3>Insight</h3>
+        <p>{{ insight }}</p>
+    </div>
+
+    <a class="back" href="{{ url_for('home') }}">Try Another</a>
+</body>
+</html>
