@@ -1,28 +1,35 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template
-import pickle  # or your model loading method
+from flask import Flask, request, jsonify, render_template 
 import re
 import string
 import nltk
-#import contractions
-from nltk.corpus import stopwords
+import contractions
+from nltk.corpus import stopwords 
+# Load your trained model
+import tensorflow as tf
+import tensorflow_hub as hub
 
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 stop_words = set(stopwords.words('english'))
 
 app = Flask(__name__)
 
-# Load your trained model
-model = pickle.load(open('models/model.pkl', 'rb'))
+
+
+model = tf.keras.models.load_model(
+     'models/model.keras',
+     custom_objects={'KerasLayer': hub.KerasLayer}
+) 
 
 def preprocess_text(text):
     # Lowercase
     text = text.lower()
 
     # Expand contractions
-    #text = contractions.fix(text)
+    text = contractions.fix(text)
 
     # Remove text in square brackets
     text = re.sub(r'\[.*?\]', '', text)
@@ -77,11 +84,14 @@ def home():
 def predict():
     raw_text = request.form['text']
     cleaned_text = preprocess_text(raw_text)
-    prediction = model.predict([cleaned_text])[0]
-    label = labels.get(prediction, "Unknown")
-    insight = insights.get(prediction, "No insight available.")
+    prediction = model.predict([cleaned_text])
+    print(prediction)
+    prediction_index = int(np.argmax(prediction))
+    print(prediction_index)
+    label = labels.get(prediction_index, "Unknown")
+    insight = insights.get(prediction_index, "No insight available.")
     
-    return render_template('result.html', label=label, insight=insight)
+    return render_template('result.html', label=label, insight=insight, text = raw_text)
 
 if __name__ == '__main__':
     app.run(debug=True)

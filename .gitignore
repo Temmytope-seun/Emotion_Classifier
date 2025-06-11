@@ -1,0 +1,8 @@
+# Virtual environments
+venv/
+.venvTC/
+.venvTextClass/
+ 
+# Model files
+models/
+ 

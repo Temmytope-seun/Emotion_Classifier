@@ -1,0 +1,7 @@
+numpy==1.26.4
+flask==3.1.1
+nltk==3.9.1
+contractions==0.1.73
+tensorflow==2.15.0 
+tensorflow-hub 
+keras==2.15.0
