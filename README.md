@@ -52,7 +52,7 @@ The best-performing model was deployed using a **Flask microservice**.
 
 ## 🎥 Demo Video
 
-![Demo Video](static/text_classification_demo.mp4)
+![Demo Video](https://drive.google.com/file/d/1ZyolDd7VnRd3JL7xP1fk1O0PjcOVSg4H/view?usp=drive_link)
 
  
 
@@ -73,6 +73,4 @@ pip install -r requirements.txt
 
 # Run the Flask app
 python app.py
-
-
----
+ 
