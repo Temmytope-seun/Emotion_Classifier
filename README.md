@@ -52,7 +52,7 @@ The best-performing model was deployed using a **Flask microservice**.
 
 ## 🎥 Demo Video
 
-![Demo Video](https://drive.google.com/file/d/1ZyolDd7VnRd3JL7xP1fk1O0PjcOVSg4H/view?usp=drive_link)
+![Demo Video]([https://drive.google.com/file/d/1ZyolDd7VnRd3JL7xP1fk1O0PjcOVSg4H/view?usp=drive_link](https://youtu.be/94NZjuqNnd8))
 
  
 
