@@ -1,19 +1,9 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template 
-import re
-import string
-import nltk
-import contractions
-from nltk.corpus import stopwords 
+from flask import Flask, request, jsonify, render_template  
 # Load your trained model
 import tensorflow as tf
 import tensorflow_hub as hub
-
-nltk.download('punkt')
-nltk.download('punkt_tab')
-nltk.download('stopwords')
-
-stop_words = set(stopwords.words('english'))
+from utils import preprocess_text
 
 app = Flask(__name__)
 
@@ -22,41 +12,7 @@ app = Flask(__name__)
 model = tf.keras.models.load_model(
      'models/model.keras',
      custom_objects={'KerasLayer': hub.KerasLayer}
-) 
-
-def preprocess_text(text):
-    # Lowercase
-    text = text.lower()
-
-    # Expand contractions
-    text = contractions.fix(text)
-
-    # Remove text in square brackets
-    text = re.sub(r'\[.*?\]', '', text)
-
-    # Remove links
-    text = re.sub(r'http\S+|www\S+|https\S+', '', text)
-
-    # Remove punctuation
-    text = text.translate(str.maketrans('', '', string.punctuation))
-
-    # Remove newlines
-    text = text.replace('\n', ' ').replace('\r', '')
-
-    # Remove words with numbers
-    text = re.sub(r'\w*\d\w*', '', text)
-
-    # Remove apostrophes (optional after contractions, but you asked for it)
-    text = text.replace("'", "")
-
-    # Tokenize
-    tokens = nltk.word_tokenize(text)
-
-    # Remove stopwords
-    filtered_tokens = [word for word in tokens if word not in stop_words]
-
-    # Join tokens back to string
-    return ' '.join(filtered_tokens)
+)
 
 insights = {
     0: "Sadness is often linked to loss, disappointment, or helplessness. Recognizing it can help develop emotional resilience and empathy.",
@@ -84,10 +40,8 @@ def home():
 def predict():
     raw_text = request.form['text']
     cleaned_text = preprocess_text(raw_text)
-    prediction = model.predict([cleaned_text])
-    print(prediction)
-    prediction_index = int(np.argmax(prediction))
-    print(prediction_index)
+    prediction = model.predict([cleaned_text]) 
+    prediction_index = int(np.argmax(prediction)) 
     label = labels.get(prediction_index, "Unknown")
     insight = insights.get(prediction_index, "No insight available.")
     
