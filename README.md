@@ -13,7 +13,7 @@ This project is a **text classification web app** that detects the **emotional s
 
 ## 📊 Dataset
 
-We used the **Emotion Description Dataset** which contains thousands of text samples labeled by emotion. This dataset is essential for building emotion-aware applications like mental health support, social listening tools, or conversational AI.
+We used the **Emotion Description Dataset**, which contains thousands of text samples labelled by emotion. This dataset is essential for building emotion-aware applications like mental health support, social listening tools, or conversational AI.
 
 ---
 
@@ -27,7 +27,7 @@ The classification model was built using **TensorFlow** and **TF Hub's pre-train
 | [`nnlm-en-dim50-with-normalization`](https://tfhub.dev/google/nnlm-en-dim50-with-normalization/2) | Slightly lower accuracy             |
 | [`nnlm-en-dim128-with-normalization`](https://tfhub.dev/google/nnlm-en-dim128-with-normalization/2) | Higher dimensional, more complex     |
 
-The **`nnlm-en-dim50`** model achieved the best balance between **accuracy (≈86%)**, speed, and model size — and was selected for deployment.
+The **`nnlm-en-dim50`** model achieved the best balance between **accuracy (≈86%)**, speed, and model size, and was selected for deployment.
 
 ---
 
@@ -36,7 +36,7 @@ The **`nnlm-en-dim50`** model achieved the best balance between **accuracy (≈8
 The best-performing model was deployed using a **Flask microservice**.
 
 ### 🌐 Features:
-- Text input from user
+- Text input from the user
 - Preprocessing (contraction expansion, stopword removal, etc.)
 - Real-time emotion classification
 - Insight and explanation of detected emotion
@@ -52,7 +52,7 @@ The best-performing model was deployed using a **Flask microservice**.
 
 ## 🎥 Demo Video
 
-[![Demo Video](https://img.youtube.com/vi/https://youtu.be/94NZjuqNnd8/0.jpg)](https://www.youtube.com/watch?v=https://youtu.be/94NZjuqNnd8)
+[![Demo Video](https://img.youtube.com/vi/94NZjuqNnd8/0.jpg)](https://www.youtube.com/watch?v=94NZjuqNnd8)
 
  
 
